@@ -1,0 +1,5 @@
+Policy: Employment Type
+
+- Permanent employment is considered stable and favors loan approval.
+- Contract or temporary employment requires additional verification; may flag for review.
+- Self-employed applicants must provide proof of consistent income; may be flagged for review if income is unstable.

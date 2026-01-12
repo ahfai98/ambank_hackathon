@@ -1,0 +1,5 @@
+Policy: Debt Service Ratio (DSR)
+
+- If DSR > 80%, the loan application should be rejected unless there are overriding circumstances (e.g., high net-worth customer, long-standing relationship).
+- If DSR <= 50%, the application is eligible for approval.
+- If 50% < DSR <= 80%, consider other factors such as employment stability and net-worth.

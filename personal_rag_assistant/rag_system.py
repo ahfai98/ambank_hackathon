@@ -8,24 +8,31 @@ from langchain_core.prompts import PromptTemplate
 from config import *
 
 # The "Senior Auditor" Prompt
-template = """You are a Senior AmBank Credit Auditor. 
-Your goal is to verify if an application passes or fails based ONLY on the provided Underwriting Framework.
+template = """You are a Deterministic Credit Logic Engine. Your goal is to populate a scorecard and determine the final verdict using the following logic gates:
 
-STRICT AUDIT RULES:
-1. DATA INTEGRITY: ONLY use data provided in the question. DO NOT assume or "invent" values. If data is missing for a rule, state "Data not provided".
-2. EXACT COMPARISON: Compare numbers strictly. (e.g., 23 months < 24 months is a FAIL).
-3. OVERRIDE HIERARCHY: If a BNM Constraint (Section 1) or Financial Requirement (Section 3) is failed, you MUST check Section 5 (Overrides) AND Section 6 (Conflict Logic).
-4. CONFLICT RESOLUTION: Per [LOGIC-01], if an applicant is REJECTED by [RULE-BNM-01] but PASSES [FAC-HNW-01], the final decision MUST be "MANUAL REVIEW".
-5. CITATION: Every analytical point must cite the bracketed ID (e.g., [RULE-BNM-01]).
-6. NO ASSUMPTIONS: If a data point is missing, you MUST NOT assume a value or "proceed with an assumption." State clearly that the rule cannot be assessed due to missing data.
+### 1. SELECTION OPTIONS:
+- **YES**: Data meets or exceeds the policy requirement.
+- **NO**: Data fails the requirement (standard).
+- **HARD REJECT**: Data fails a strict regulatory or demographic mandate.
+- **OVERRIDE**: Data triggers a specific policy allowance (e.g., Section 5) that can mitigate a NO or HARD REJECT.
+- **DATA NOT AVAILABLE**: Information was not provided in the applicant's profile.
 
+### 2. VERDICT HIERARCHY:
+- **Rule A (The Override Rule)**: If any box is [OVERRIDE] AND any other box is [NO] or [HARD REJECT] -> **VERDICT: MANUAL REVIEW**.
+- **Rule B (The Hard Stop)**: If there is at least one [HARD REJECT] AND zero [OVERRIDE] boxes -> **VERDICT: HARD NO**.
+- **Rule C (The Majority Rule)**: If no [HARD REJECT] or [OVERRIDE] exists:
+    - Majority [YES] -> **VERDICT: CLEAR YES**
+    - Majority [NO] -> **VERDICT: HARD NO**
+
+### SCORECARD TABLE:
+[Policy ID] | [Requirement] | [Applicant Data] | [Math/Logic Check] | [Selection] | [Source Trace]
+--- | --- | --- | --- | --- | ---
+
+### DATA TO ANALYZE:
 Context: {context}
 Question: {question}
 
-Auditor Analysis:
-- Step-by-Step Rule Verification:
-- Overrides/Conflict Check:
-Final Decision:"""
+### AUDIT SCORECARD:"""
 
 QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
 

@@ -1,5 +1,0 @@
-Policy: Bank Relationship Duration
-
-- Customers with a relationship duration >= 5 years are considered loyal and may receive favorable consideration.
-- Relationship duration < 2 years does not contribute positively to approval.
-- Relationship is considered only in conjunction with other factors such as DSR and employment stability.

@@ -1,0 +1,26 @@
+# Python 
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual Environment
+venv/
+env/
+.env
+.venv/
+
+# Project Specific Data (ChromaDB & Persistence)
+data/chroma
+*.db
+*.sqlite3
+
+# Temporary files (Streamlit and PDF processing)
+temp_*
+.streamlit/config.toml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db

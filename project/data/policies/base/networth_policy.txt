@@ -1,5 +1,0 @@
-Policy: Net-Worth Status
-
-- High net-worth customers (savings > RM500,000, EPF > RM100,000, property assets) may override certain reject flags.
-- Net-worth status is considered supplemental and does not replace base DSR or employment policies.
-- Conflicting criteria involving net-worth must always be flagged for manual review.

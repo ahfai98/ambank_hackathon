@@ -27,5 +27,7 @@ ollama pull nomic-embed-text
 ollama pull gemma3
 ```
 
-### Run Streamlite
+### Run Streamlit
 streamlit run personal_rag_assistant.py
+
+Upload sample policy and index, then prompt.
